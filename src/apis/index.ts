@@ -5,6 +5,8 @@ import { URLShorteningController } from "../core/controller";
 
 const router = Router();
 
+
+
 router.post(
   "/shorten",
   validateRequestInput({ body: createUrlShorteningSchema }),
@@ -34,4 +36,7 @@ router.get("/shorten/:shortCode/stats",
    URLShorteningController.Statistics,
 );
 
+router.get("/shorten",
+   URLShorteningController.RetrieveAll,
+);
 export default router;

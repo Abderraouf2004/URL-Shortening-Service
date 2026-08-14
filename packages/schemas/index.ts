@@ -12,6 +12,8 @@ export const UrlShorteningDTOSchema = Joi.object({
 });
 
 
+
+
 export const UrlShorteningStatisticsSchema = Joi.object({
   id: Joi.string().uuid().required(),
   url: Joi.string().uri().required(),

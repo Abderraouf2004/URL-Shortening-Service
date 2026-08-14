@@ -64,6 +64,10 @@ export const UrlShorteningRepo = {
 
     return Url;
   },
+  RetrieveAll : async () => {
+    const Urls = await prisma.urlShortening.findMany();
+    return Urls;
+  }
 
 
 

@@ -24,6 +24,10 @@ export const URLShorteningController = {
           const data = await URLShorteningService.Statistics(req.params.shortCode as string);
           res.status(200).json({ data, message: "URL statistics retrieved successfully" });
      }),
-
+     RetrieveAll : tryCatch(async (req: Request, res: Response) => {
+          const data = await URLShorteningService.RetrieveAll();
+          res.status(200).json({ data, message: "All URLs retrieved successfully" });
+     }),
+ 
    
 };

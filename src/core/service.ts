@@ -38,6 +38,11 @@ export const URLShorteningService = {
   Statistics : async (shortCode: string) => {
     const Url = await UrlShorteningRepo.Statistics(shortCode);
     return validateObject<UrlShortening.StatisticsDTO>(UrlShorteningStatisticsSchema, Url);
+  },
+  RetrieveAll : async () => {
+    const Urls = await UrlShorteningRepo.RetrieveAll();
+    return Urls.map((url) => validateObject<UrlShortening.DTO>(UrlShorteningDTOSchema, url));
   }
+
 
 };
