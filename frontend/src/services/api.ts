@@ -4,6 +4,7 @@ export interface UrlData {
   id: string;
   url: string;
   shortCode: string;
+  accessCount: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -163,4 +164,10 @@ export const getStatistics = async (
   }
 
   return result.data;
+};
+
+export const getRedirectUrl = (
+  shortCode: string
+): string => {
+  return `${API_URL}/api/${encodeURIComponent(shortCode)}/redirect`;
 };
