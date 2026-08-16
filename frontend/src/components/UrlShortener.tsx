@@ -7,7 +7,6 @@ import {
   updateShortUrl,
   deleteShortUrl,
   getStatistics,
-  getShortUrl,
   registerAccess,
 } from "../services/api";
 
@@ -100,9 +99,14 @@ export default function UrlShortener() {
       return shortUrls;
     }
 
-    return shortUrls.filter((item) =>
-      item.shortCode.toLowerCase().includes(value) ||
-      item.url.toLowerCase().includes(value)
+    return shortUrls.filter(
+      (item) =>
+        item.shortCode
+          .toLowerCase()
+          .includes(value) ||
+        item.url
+          .toLowerCase()
+          .includes(value)
     );
   }, [shortUrls, search]);
 
@@ -111,7 +115,9 @@ export default function UrlShortener() {
   ========================= */
 
   const getShortLink = (shortCode: string) => {
-    return `${import.meta.env.VITE_API_URL}/shorten/${shortCode}`;
+    return `${
+      import.meta.env.VITE_API_URL
+    }/api/${encodeURIComponent(shortCode)}/redirect`;
   };
 
   /* =========================
@@ -135,7 +141,9 @@ export default function UrlShortener() {
     try {
       setLoading(true);
 
-      const result = await createShortUrl(url.trim());
+      const result = await createShortUrl(
+        url.trim()
+      );
 
       setUrl("");
 
@@ -169,19 +177,29 @@ export default function UrlShortener() {
     setStatistics(null);
     setEditing(false);
     setEditUrl("");
+    setCopied(false);
 
     setError("");
     setSuccess("");
   };
-  
 
-  const handleOriginalUrlClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-  if (!selectedUrl) return;
+  /* =========================
+     ORIGINAL URL CLICK
+  ========================= */
 
-  registerAccess(selectedUrl.shortCode).catch((err) => {
-    console.error("Failed to register access:", err);
-  });
-};
+  const handleOriginalUrlClick = () => {
+    if (!selectedUrl) return;
+
+    registerAccess(
+      selectedUrl.shortCode
+    ).catch((err) => {
+      console.error(
+        "Failed to register access:",
+        err
+      );
+    });
+  };
+
   /* =========================
      COPY
   ========================= */
@@ -369,7 +387,6 @@ export default function UrlShortener() {
 
   return (
     <div className="min-h-screen w-full bg-slate-50">
-
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
         {/* =========================
@@ -377,7 +394,6 @@ export default function UrlShortener() {
         ========================= */}
 
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-
           <div>
             <p className="text-sm font-medium text-slate-500">
               URL Shortener
@@ -397,9 +413,10 @@ export default function UrlShortener() {
             disabled={loadingList}
             className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loadingList ? "Refreshing..." : "Refresh"}
+            {loadingList
+              ? "Refreshing..."
+              : "Refresh"}
           </button>
-
         </div>
 
         {/* =========================
@@ -407,9 +424,7 @@ export default function UrlShortener() {
         ========================= */}
 
         <section className="mb-8">
-
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-
             <div className="mb-4">
               <h2 className="text-lg font-semibold text-slate-950">
                 Create Short URL
@@ -421,9 +436,7 @@ export default function UrlShortener() {
             </div>
 
             <form onSubmit={handleCreate}>
-
               <div className="flex flex-col gap-3 sm:flex-row">
-
                 <input
                   type="url"
                   value={url}
@@ -443,13 +456,9 @@ export default function UrlShortener() {
                     ? "Creating..."
                     : "Shorten URL"}
                 </button>
-
               </div>
-
             </form>
-
           </div>
-
         </section>
 
         {/* =========================
@@ -479,13 +488,11 @@ export default function UrlShortener() {
           ========================= */}
 
           <section className="lg:col-span-3">
-
             <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
 
               {/* LIST HEADER */}
 
               <div className="border-b border-slate-100 p-5">
-
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                   <div>
@@ -511,15 +518,12 @@ export default function UrlShortener() {
                     placeholder="Search..."
                     className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-slate-400 focus:bg-white sm:w-52"
                   />
-
                 </div>
-
               </div>
 
               {/* LIST */}
 
               <div className="p-3">
-
                 {loadingList ? (
                   <div className="flex min-h-60 items-center justify-center text-sm text-slate-500">
                     Loading your short URLs...
@@ -539,13 +543,10 @@ export default function UrlShortener() {
                       Create your first short URL using
                       the form above.
                     </p>
-
                   </div>
                 ) : (
                   <div className="space-y-2">
-
                     {filteredUrls.map((item) => {
-
                       const isSelected =
                         selectedUrl?.id === item.id;
 
@@ -561,13 +562,10 @@ export default function UrlShortener() {
                               : "border-transparent hover:border-slate-200 hover:bg-slate-50"
                           }`}
                         >
-
                           <div className="flex items-start justify-between gap-4">
 
                             <div className="min-w-0">
-
                               <div className="flex items-center gap-2">
-
                                 <span className="font-semibold text-slate-950">
                                   {item.shortCode}
                                 </span>
@@ -577,11 +575,7 @@ export default function UrlShortener() {
                                     Selected
                                   </span>
                                 )}
-
                               </div>
-
-                             
-
                             </div>
 
                             <span className="shrink-0 text-xs text-slate-400">
@@ -589,20 +583,14 @@ export default function UrlShortener() {
                                 item.createdAt
                               ).toLocaleDateString()}
                             </span>
-
                           </div>
-
                         </button>
                       );
                     })}
-
                   </div>
                 )}
-
               </div>
-
             </div>
-
           </section>
 
           {/* =========================
@@ -610,7 +598,6 @@ export default function UrlShortener() {
           ========================= */}
 
           <section className="lg:col-span-2">
-
             <div className="sticky top-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
 
               {!selectedUrl ? (
@@ -629,7 +616,6 @@ export default function UrlShortener() {
                     to see its details and available
                     actions.
                   </p>
-
                 </div>
               ) : (
                 <div className="p-6">
@@ -637,9 +623,7 @@ export default function UrlShortener() {
                   {/* DETAILS HEADER */}
 
                   <div className="flex items-start justify-between gap-4">
-
                     <div>
-
                       <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
                         Short code
                       </p>
@@ -648,34 +632,38 @@ export default function UrlShortener() {
                         {selectedUrl.shortCode}
                       </h2>
 
+                      <button
+                        onClick={handleCopy}
+                        disabled={loading}
+                        className="mt-3 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {copied
+                          ? "Copied!"
+                          : "Copy short URL"}
+                      </button>
                     </div>
 
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100">
                       🔗
                     </div>
-
                   </div>
-
-            
 
                   {/* ORIGINAL URL */}
 
                   <div className="mt-6">
-
                     <p className="text-xs font-medium uppercase tracking-wider text-slate-400">
                       Original URL
                     </p>
 
                     <a
-  href={selectedUrl.url}
-  target="_blank"
-  rel="noopener noreferrer"
-  onClick={handleOriginalUrlClick}
-  className="mt-2 block break-all text-sm leading-6 text-slate-700 hover:text-slate-950 hover:underline"
->
-  {selectedUrl.url}
-</a>
-
+                      href={selectedUrl.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleOriginalUrlClick}
+                      className="mt-2 block break-all text-sm leading-6 text-slate-700 hover:text-slate-950 hover:underline"
+                    >
+                      {selectedUrl.url}
+                    </a>
                   </div>
 
                   {/* DATES */}
@@ -683,7 +671,6 @@ export default function UrlShortener() {
                   <div className="mt-6 grid grid-cols-2 gap-3">
 
                     <div className="rounded-xl bg-slate-50 p-3">
-
                       <p className="text-xs text-slate-400">
                         Created
                       </p>
@@ -693,11 +680,9 @@ export default function UrlShortener() {
                           selectedUrl.createdAt
                         ).toLocaleDateString()}
                       </p>
-
                     </div>
 
                     <div className="rounded-xl bg-slate-50 p-3">
-
                       <p className="text-xs text-slate-400">
                         Updated
                       </p>
@@ -707,7 +692,6 @@ export default function UrlShortener() {
                           selectedUrl.updatedAt
                         ).toLocaleDateString()}
                       </p>
-
                     </div>
 
                   </div>
@@ -747,7 +731,6 @@ export default function UrlShortener() {
                       </button>
 
                     </div>
-
                   </div>
 
                   {/* =========================
@@ -762,8 +745,7 @@ export default function UrlShortener() {
                       </h3>
 
                       <p className="mt-1 text-xs leading-5 text-slate-500">
-                        The short code will stay the
-                        same.
+                        The short code will stay the same.
                       </p>
 
                       <input
@@ -796,7 +778,6 @@ export default function UrlShortener() {
                         </button>
 
                       </div>
-
                     </div>
                   )}
 
@@ -814,7 +795,6 @@ export default function UrlShortener() {
                       <div className="mt-3 flex items-end justify-between">
 
                         <div>
-
                           <p className="text-4xl font-bold">
                             {statistics.accessCount}
                           </p>
@@ -822,7 +802,6 @@ export default function UrlShortener() {
                           <p className="mt-1 text-sm text-slate-400">
                             Total accesses
                           </p>
-
                         </div>
 
                         <div className="text-3xl">
@@ -830,21 +809,15 @@ export default function UrlShortener() {
                         </div>
 
                       </div>
-
                     </div>
                   )}
 
                 </div>
               )}
-
             </div>
-
           </section>
-
         </div>
-
       </div>
-
     </div>
   );
 }
