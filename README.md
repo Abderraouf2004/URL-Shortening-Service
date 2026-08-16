@@ -17,9 +17,11 @@ https://github.com/Abderraouf2004/URL-Shortening-Service
 ## 🚀 Live Demo
 
 ### Frontend
+
 https://url-shortening-service-sandy.vercel.app/
 
 ### Backend API
+
 https://url-shortening-api-mutf.onrender.com
 
 ---
@@ -38,7 +40,7 @@ https://url-shortening-api-mutf.onrender.com
 - 🗄️ PostgreSQL database
 - ⚡ REST API
 - 📱 Responsive frontend
-- ☁️ Deployed backend and frontend
+- ☁️ Deployed frontend and backend
 
 ---
 
