@@ -1,11 +1,3 @@
-# 🔗 URL Shortening Service
-
-A full-stack URL Shortening Service that allows users to create, manage, and track short URLs.
-
-The project provides a REST API backend and a modern React frontend where users can create short URLs, view all created URLs, update or delete them, and check access statistics.
-
----
-
 ## 🔗 Project URL
 
 https://github.com/Abderraouf2004/URL-Shortening-Service
