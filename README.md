@@ -1,8 +1,14 @@
+# 🔗 URL Shortening Service
+
+A full-stack URL Shortening Service that allows users to create, manage, and track short URLs.
+
 ## 🔗 Project URL
 
 https://github.com/Abderraouf2004/URL-Shortening-Service
 
----
+## 🌐 Live Project
+
+https://url-shortening-service-sandy.vercel.app/
 
 ## 🚀 Live Demo
 
