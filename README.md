@@ -6,6 +6,14 @@ The project provides a REST API backend and a modern React frontend where users 
 
 ---
 
+## 🔗 Project URL
+
+**GitHub Repository:**
+
+https://github.com/Abderraouf2004/URL-Shortening-Service
+
+---
+
 ## 🚀 Live Demo
 
 ### Frontend
