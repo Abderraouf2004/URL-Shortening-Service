@@ -166,8 +166,22 @@ export const getStatistics = async (
   return result.data;
 };
 
-export const getRedirectUrl = (
+
+/* =========================
+   REGISTER ACCESS
+========================= */
+
+export const registerAccess = async (
   shortCode: string
-): string => {
-  return `${API_URL}/api/${encodeURIComponent(shortCode)}/redirect`;
+): Promise<void> => {
+  const response = await fetch(
+    `${API_URL}/api/shorten/${encodeURIComponent(shortCode)}/access`,
+    {
+      method: "POST",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to register URL access");
+  }
 };

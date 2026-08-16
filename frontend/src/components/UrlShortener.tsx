@@ -7,6 +7,8 @@ import {
   updateShortUrl,
   deleteShortUrl,
   getStatistics,
+  getShortUrl,
+  registerAccess,
 } from "../services/api";
 
 import type {
@@ -171,7 +173,15 @@ export default function UrlShortener() {
     setError("");
     setSuccess("");
   };
+  
 
+  const handleOriginalUrlClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  if (!selectedUrl) return;
+
+  registerAccess(selectedUrl.shortCode).catch((err) => {
+    console.error("Failed to register access:", err);
+  });
+};
   /* =========================
      COPY
   ========================= */
@@ -657,13 +667,14 @@ export default function UrlShortener() {
                     </p>
 
                     <a
-                      href={selectedUrl.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 block break-all text-sm leading-6 text-slate-700 hover:text-slate-950 hover:underline"
-                    >
-                      {selectedUrl.url}
-                    </a>
+  href={selectedUrl.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={handleOriginalUrlClick}
+  className="mt-2 block break-all text-sm leading-6 text-slate-700 hover:text-slate-950 hover:underline"
+>
+  {selectedUrl.url}
+</a>
 
                   </div>
 
