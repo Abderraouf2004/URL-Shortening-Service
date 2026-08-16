@@ -4,7 +4,7 @@ A full-stack URL Shortening Service that allows users to create, manage, and tra
 
 ## 🚀 Project URL
 
-https://url-shortening-service-sandy.vercel.app/
+https://roadmap.sh/projects/url-shortening-service
 
 ## 🔧 Backend API
 
