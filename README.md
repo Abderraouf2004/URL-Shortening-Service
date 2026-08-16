@@ -8,8 +8,6 @@ The project provides a REST API backend and a modern React frontend where users 
 
 ## 🔗 Project URL
 
-**GitHub Repository:**
-
 https://github.com/Abderraouf2004/URL-Shortening-Service
 
 ---
@@ -36,7 +34,7 @@ https://url-shortening-api-mutf.onrender.com
 - 🗑️ Delete a short URL
 - 📊 View access statistics
 - 📈 Track URL accesses
-- 🔐 Unique short codes
+- 🔐 Generate unique short codes
 - 🗄️ PostgreSQL database
 - ⚡ REST API
 - 📱 Responsive frontend
@@ -59,7 +57,8 @@ https://url-shortening-api-mutf.onrender.com
 - Express.js
 - TypeScript
 - Prisma ORM
-- Joi / Zod
+- Joi
+- Zod
 - Nanoid
 - CORS
 
