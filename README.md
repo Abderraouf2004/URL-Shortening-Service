@@ -2,23 +2,17 @@
 
 A full-stack URL Shortening Service that allows users to create, manage, and track short URLs.
 
-## 🔗 Project URL
-
-https://github.com/Abderraouf2004/URL-Shortening-Service
-
-## 🌐 Live Project
+## 🚀 Project URL
 
 https://url-shortening-service-sandy.vercel.app/
 
-## 🚀 Live Demo
-
-### Frontend
-
-https://url-shortening-service-sandy.vercel.app/
-
-### Backend API
+## 🔧 Backend API
 
 https://url-shortening-api-mutf.onrender.com
+
+## 📦 GitHub Repository
+
+https://github.com/Abderraouf2004/URL-Shortening-Service
 
 ---
 
